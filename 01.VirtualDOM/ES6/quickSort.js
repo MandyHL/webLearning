@@ -16,3 +16,20 @@ function quickSort(arr){
 
 let arr=[1,5,6,5,6,9,52,47,21,99,31,25,524,68,359]
 console.log(quickSort(arr))
+
+
+function findSubStr(str1, str2) {
+    if (str1.length > str2.length) {
+      [str1, str2] = [str2, str1]
+    }
+    var result = ''
+    var len = str1.length
+    debugger
+    for (var j = len; j > 0; j--) {
+      for (var i = 0; i < len - j; i++) {
+        result = str1.substr(i, j)
+        if (str2.includes(result)) return result
+      }
+    }
+  }
+  console.log(findSubStr('aabbcc11', 'ppooiiuubcc123'))
