@@ -1,17 +1,15 @@
 var lengthOfLongestSubstring = function(s) {
-    debugger
-    let arr = [];
-    let max = 0;
-    for(let item of s){
-        debugger
-        if(arr.includes(item)){
-            let index = arr.indexOf(item);
-            arr.splice(0, index + 1);
-        }
-        arr.push(item);
-        max = max > arr.length ? max : arr.length;
-    }
-    return max;
+   let map = new Map();
+   let ans = 0;
+   for(let start = end = 0 ;end < s.length ;end++){
+       let char = s.charAt(end);
+       if(map.has(char)){
+            start = Math.max(map.get(char),start)
+       }
+       ans = Math.max(end - start + 1 ,ans)
+       map.set(char,end + 1)
+   }
+   return ans;
 };
 
 lengthOfLongestSubstring("abcabcbb")
