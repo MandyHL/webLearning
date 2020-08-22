@@ -13,3 +13,16 @@ const obj = {
 // 输出结果： 
 // ['FE coder', 1, 'byted']
 //（不能使用with和eval）
+
+function get(param1,...rest){
+    console.log(param1)
+    const obj = JSON.stringify(param1);
+
+    const result = rest.map(item => {
+        return new Function(`return ${obj}.${item}`)()
+    })
+
+    return result
+}
+
+console.log(get(obj, 'selector.to.toutiao', 'target[0]', 'target[2].name') )
