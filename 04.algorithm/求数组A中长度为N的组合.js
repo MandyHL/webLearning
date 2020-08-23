@@ -35,15 +35,15 @@ function createTree(index, arr, N) {
                 result.push(JSON.parse(JSON.stringify(tempArr)));//数组是引用类型，注意深浅拷贝
                 tempArr.pop();
                 if (i === arr.length - 1) {//指针到达最后位置，向上回溯
-                    uploop = function(){
+                    uploop = function(){//回溯的函数
                         let obj = tempArr.pop();
-                    let index = arr.findIndex(item => item === obj);
+                        let index = arr.findIndex(item => item === obj);
                         if (index > -1 && arr.length - index + tempArr.length >= N) {//还有足够的字符串再继续循环
                             loop(index + 1)
                         }
                     }
-                    uploop()
-                    if (tempArr.length) {
+                    uploop();//执行回溯
+                    if (tempArr.length) { // 可一直回溯到数组只剩下首元素
                         uploop()
                     }
                 }
@@ -52,9 +52,8 @@ function createTree(index, arr, N) {
         return result;
     }
     loop(index)
-
     return result;
 }
-console.log(group([1, 2, 3, 4, 5,6,7], 4))
+console.log(group([1, 2, 3, 4, 5,6], 4))
 
 
